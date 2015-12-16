@@ -17,10 +17,10 @@ namespace dnPE
             _Overview.SizeOfImage = OptionalHeader32.SizeOfImage;
         }
 
-        public PEInfomationInternal(byte[] b)
+        public PEInfomationInternal(byte[] b, string path)
         {
             DataBytes = b;
-            FilePath = string.Empty;
+            FilePath = path;
             IsProcess = false;
         }
 

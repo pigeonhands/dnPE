@@ -29,17 +29,15 @@ namespace dnPE
             return Load(File.ReadAllBytes(file), file);
         }
 
-        /// <summary>
-        /// Load PE infomation from byte array
-        /// </summary>
-        /// <param name="data"></param>
-        /// <param name="path"></param>
-        /// <returns>PE Infomation of target</returns>
-        public static PEInfomation Load(byte[] data, string path)
+        public static PEInfomation Load(byte[] dfile)
+        {
+            return Load(dfile, string.Empty);
+        }
+        private static PEInfomation Load(byte[] data, string path)
         {
             if (data == null) throw new ArgumentNullException("data");
 
-            PEInfomationInternal info = new PEInfomationInternal(data);
+            PEInfomationInternal info = new PEInfomationInternal(data, path);
 
             info._DosHeader = StructFromBytes<IMAGE_DOS_HEADER>(data, 0);
             info._FileHeader = StructFromBytes<IMAGE_FILE_HEADER>(data, Convert.ToInt32(info._DosHeader.e_lfanew));
